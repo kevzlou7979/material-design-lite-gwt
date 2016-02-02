@@ -1,15 +1,15 @@
 package org.zerowarning.gwt.mdl.demo;
 
-import static com.google.gwt.core.client.GWT.getModuleBaseURL;
-import static org.zerowarning.gwt.mdl.components.buttons.ButtonFabColor.COLORED;
+import static org.zerowarning.gwt.mdl.components.buttons.Button.createRaised;
+import static org.zerowarning.gwt.mdl.components.buttons.ButtonColor.BTN_NO_COLOR;
 import static org.zerowarning.gwt.mdl.components.ripples.Ripple.HAS_RIPPLE;
-import static org.zerowarning.gwt.mdl.exts.components.buttons.ImgButton.createFabI;
 
 import org.zerowarning.gwt.mdl.components.buttons.Button;
+import org.zerowarning.gwt.mdl.components.menus.ItemClickEvent;
 import org.zerowarning.gwt.mdl.components.menus.Menu;
 
 import com.google.gwt.core.client.EntryPoint;
-import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -25,14 +25,33 @@ public class Extensions implements EntryPoint {
 
 		RootPanel extensPanel = RootPanel.get("extensContainer");
 
-		Menu menu = new Menu("select");
-		menu.getElement().setAttribute("style", "padding-right: 4px;");
+		Button btn = createRaised(BTN_NO_COLOR, HAS_RIPPLE, "Choose option");
+		btn.getElement().setId("menu_event_sample");
+		extensPanel.add(btn);
+
+		Menu menu = new Menu("menu_event_sample");
+		menu.addItem("First option");
+		menu.addItem("Second option");
+		menu.addItem("Third option");
+		menu.clear();
+		menu.addItem("Option #1");
+		menu.addItem("Option #2");
+		menu.addItem("Option #3");
+
 		extensPanel.add(menu);
 
-		String url = getModuleBaseURL() + "ic_info_black_24dp_1x.png";
-		Image img = new Image(url);
-		Button btn = createFabI(COLORED, HAS_RIPPLE, img);
-		btn.setEnabled(false);
-		extensPanel.add(btn);
+		final Label lbl = new Label();
+		lbl.setText("Choose option");
+		lbl.addStyleName("mdl-typography--headline");
+		lbl.addStyleName("mdl-gwt-select-status");
+		extensPanel.add(lbl);
+
+		menu.addItemClickListener(new Menu.ItemClickListener() {
+
+			@Override
+			public void onItemClicked(ItemClickEvent event) {
+				lbl.setText(event.getValue());
+			}
+		});
 	}
 }
