@@ -44,3 +44,12 @@
 	margin-top: 32px;
 	width: 100%;
 }
+
+/*Make each title grey and leave a space before*/
+.mdl-gwt-title {
+	padding-top: 30px;
+}
+
+.mdl-gwt-title, .mdl-gwt-text {
+	color: hsl(0, 0%, 46%);
+}
