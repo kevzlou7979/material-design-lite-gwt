@@ -40,8 +40,18 @@ public class Components implements EntryPoint {
 		final String CTNR_09 = "ctnr_09";
 		final String CTNR_10 = "ctnr_10";
 		final String CTNR_11 = "ctnr_11";
-
-		final String CTNR = "ctnr";
+		final String CTNR_12 = "ctnr_12";
+		final String CTNR_13 = "ctnr_13";
+		final String CTNR_14 = "ctnr_14";
+		final String CTNR_15 = "ctnr_15";
+		final String CTNR_16 = "ctnr_16";
+		final String CTNR_17 = "ctnr_17";
+		final String CTNR_18 = "ctnr_18";
+		final String CTNR_19 = "ctnr_19";
+		final String CTNR_20 = "ctnr_20";
+		final String CTNR_21 = "ctnr_21";
+		final String CTNR_22 = "ctnr_22";
+		final String CTNR_23 = "ctnr_23";
 
 		final String TXT = "Button";
 		final String ICO_1 = "add";
@@ -64,39 +74,62 @@ public class Components implements EntryPoint {
 		btnFab.setEnabled(false);
 		get(CTNR_05).add(btnFab);
 
-		//create a plain raised button
+		// create a plain raised button
 		get(CTNR_06).add(createRaised(BTN_NO_COLOR, NONE, TXT));
-		
-		//create a plain raised button with ripple
+
+		// create a plain raised button with ripple
 		get(CTNR_07).add(createRaised(BTN_NO_COLOR, HAS_RIPPLE, TXT));
-		
-		//create a plain raised disabled button
+
+		// create a plain raised disabled button
 		Button btnRaised = createRaised(BTN_NO_COLOR, NONE, TXT);
 		btnRaised.setEnabled(false);
 		get(CTNR_08).add(btnRaised);
-		
-		//create a colored button with a ripple
-		get(CTNR_09).add(createRaised(PRIMARY, HAS_RIPPLE, TXT));
-		
-		//create an accent colored button
+
+		// create a colored button with a ripple
+		get(CTNR_09).add(createRaised(PRIMARY, NONE, TXT));
+
+		// create an accent colored button
 		get(CTNR_10).add(createRaised(ACCENT, NONE, TXT));
-		
-		//create an accent colored button with a ripple
+
+		// create an accent colored button with a ripple
 		get(CTNR_11).add(createRaised(ACCENT, HAS_RIPPLE, TXT));
-		
-		get(CTNR).add(createRaised(BTN_NO_COLOR, HAS_RIPPLE, TXT));
-		get(CTNR).add(createRaised(PRIMARY, HAS_RIPPLE, TXT));
-		get(CTNR).add(createRaised(ACCENT, HAS_RIPPLE, TXT));
 
-		get(CTNR).add(createFlat(BTN_NO_COLOR, HAS_RIPPLE, TXT));
-		get(CTNR).add(createFlat(PRIMARY, HAS_RIPPLE, TXT));
-		get(CTNR).add(createFlat(ACCENT, HAS_RIPPLE, TXT));
+		// create a flat button
+		get(CTNR_12).add(createFlat(BTN_NO_COLOR, NONE, TXT));
 
-		get(CTNR).add(createIcon(BTN_NO_COLOR, HAS_RIPPLE, ICO_3));
-		get(CTNR).add(createIcon(PRIMARY, HAS_RIPPLE, ICO_3));
-		get(CTNR).add(createIcon(ACCENT, HAS_RIPPLE, ICO_3));
+		// create a flat button with a ripple
+		get(CTNR_13).add(createFlat(BTN_NO_COLOR, HAS_RIPPLE, TXT));
 
-		get(CTNR).add(createMiniFab(FAB_NO_COLOR, HAS_RIPPLE, ICO_1));
-		get(CTNR).add(createMiniFab(COLORED, HAS_RIPPLE, ICO_1));
+		// create disabled flat button
+		Button btnFlat = createFlat(BTN_NO_COLOR, NONE, TXT);
+		btnFlat.setEnabled(false);
+		get(CTNR_14).add(btnFlat);
+
+		// create a primary colored flat button
+		get(CTNR_15).add(createFlat(PRIMARY, NONE, TXT));
+
+		// create an accent colored flat button
+		get(CTNR_16).add(createFlat(ACCENT, NONE, TXT));
+
+		// create an accent colored flat button with a ripple
+		get(CTNR_17).add(createFlat(ACCENT, HAS_RIPPLE, TXT));
+
+		// create an icon button
+		get(CTNR_18).add(createIcon(BTN_NO_COLOR, NONE, ICO_3));
+
+		// create a colored icon button
+		get(CTNR_19).add(createIcon(PRIMARY, NONE, ICO_3));
+
+		// create an accent colored icon button
+		get(CTNR_20).add(createIcon(ACCENT, NONE, ICO_3));
+
+		// create an accent colored icon button with ripple
+		get(CTNR_21).add(createIcon(ACCENT, HAS_RIPPLE, ICO_3));
+
+		// create a mini fab
+		get(CTNR_22).add(createMiniFab(FAB_NO_COLOR, NONE, ICO_1));
+
+		// create a colored mini fab
+		get(CTNR_23).add(createMiniFab(COLORED, NONE, ICO_1));
 	}
 }
