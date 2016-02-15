@@ -79,21 +79,18 @@ public class Menu extends HTMLPanel {
 	 * id of the button and must be provided in the {@link Menu} constructor.
 	 * <br>
 	 * <br>
-	 * When the menu is created, it will look for the action button using its id
-	 * and will decorate it with the appropriate event handlers.
+	 * When the menu is attached to the DOM, it will look for the action button
+	 * using its id and will decorate it with the appropriate event handlers.
 	 * 
 	 * @param id
 	 *            the id of the associated action button.
 	 * 
 	 * @see Button
 	 */
-	public Menu(String id) {
+	public Menu() {
 
 		// creating the menu that is a unordered list
 		super(UListElement.TAG, "");
-
-		// ... which is activated by the button whose id is
-		menuId = id;
 
 		// ... which is placed below the related button
 		setAnchor(BOTTOM_LEFT);
@@ -107,9 +104,6 @@ public class Menu extends HTMLPanel {
 		// ...whose items has ripples (for now)
 		addStyleName(Ripple.HAS_RIPPLE.toString());
 
-		// set the binding between the menu and the action button
-		getElement().setAttribute("for", menuId);
-
 		// create the listener that will handle items selection
 		clickHandler = new ItemClickHandler();
 
@@ -121,6 +115,40 @@ public class Menu extends HTMLPanel {
 
 		// create the array that will hold item click listeners
 		listeners = new ArrayList<>();
+	}
+
+	/**
+	 * Set the id of the related action {@link Button} enabling mdl to bind the
+	 * {@link Menu} to it. This method can only be invoked when the menu is not
+	 * already attached to the DOM. If the menu is attached and therefore
+	 * upgraded, the action button cannot be changed.
+	 * 
+	 * @param forId
+	 *            The id of the action {@link Button}.
+	 * 
+	 * @throws IllegalStateException
+	 *             mdl does not allow re binding the menu when the menu is not
+	 *             yet upgraded. If the menu is already upgraded an exception is
+	 *             raised.
+	 */
+	public void setActionId(String forId) throws IllegalStateException {
+
+		// Biding the menu to the button is only possible when the menu is not
+		// yet upgraded. If the menu is already upgraded it is not possible to
+		// re bind it to another button anymore. mdl does not allow such
+		// behavior.
+		if (isAttached()) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("The menu should be associated to an action ");
+			sb.append("button before bieng attached to the DOM.");
+			throw new IllegalStateException(sb.toString());
+		}
+
+		// the menu is opened by a button identified by forId
+		menuId = forId;
+
+		// set the binding between the menu and the action button
+		getElement().setAttribute("for", menuId);
 	}
 
 	/**
@@ -336,9 +364,11 @@ public class Menu extends HTMLPanel {
 	private void assertMaxHeight() {
 
 		// the value returned accounts for the padding value, but the enforced
-		// height does not account for any paddings. This results in the This is not an
-		// issue since the intended behavior is to not exceed a maximum
-		// threshold not set an exact height value for the menu.
+		// height does not account for any paddings. The resulting height of the
+		// menu is the max height to which is added the top and bottom paddings.
+		// This result is only problematic when absurdly large paddings are used
+		// which is very unlikely to happen. When reasonable padding values are
+		// used, the overall height stays within the range of the threshold.
 		int height = getElement().getClientHeight();
 
 		if (height > MAX_HEIGHT) {
