@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Buttons</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue_grey-red.min.css" />
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" type="text/css" href="../../index.css">
+	<link rel="stylesheet" type="text/css" href="../components.css">
+	<link rel="stylesheet" type="text/css" href="buttons.css">
+
+	<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+
+	<!-- GWT module containing the buttons-->
+	<script src="../../mdlgwtdemo/mdlgwtdemo.nocache.js"></script>
+</head>
+
+<body class="demo-global">
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!--here is injected the header component-->
+		<!-- Use a simplified version of the header css -->
+		<header class="demo-simplified-header">
+
+			<!-- On the first row, put the demo title  -->
+			<div class="mdl-layout__header-row">
+
+				<!-- Title -->
+				<span class="mdl-layout-title">Material Design Lite for GWT</span>
+			</div>
+
+			<!-- On the second row put the tabs and external links -->
+			<div id="header-link-row" class="mdl-layout__header-row">
+				<!-- Put a spacer to push the external links to the right -->
+				<div class="mdl-layout-spacer"></div>
+
+				<!-- A link to the javadoc -->
+				<a href="../../apidocs" class="demo-header-link"><span
+					class="icon material-icons">assignment</span><span class="text">Javadoc</span></a>
+
+				<!-- A link to the source code -->
+				<a href="https://github.com/ilyes4j/material-design-lite-gwt" class="demo-header-link"><span class="icon material-icons">code</span><span
+					class="text">GitHub</span></a>
+			</div>
+		</header>
+		<div class="mdl-layout__content">
+			<div id="demo-main" class="demo-main">
+				<div id="buttonsContainer" class="page" align="center">
+					<div class="content" align="left">
+						<h4 class="demo-title">Buttons</h4>
+
+						<span class="demo-text">Variations on Material Design
+							buttons.</span>
+
+						<h5 class="demo-title">Colored fab</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_01"></div>
+								<div class="demo-button-caption demo-text">Colored FAB</div>
+							</div>
+							<div class="demo-button-container" align="center">
+								<div id="ctnr_02"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/ColoredFabDemo.java" %}</pre>
+
+						<h5 class="demo-title">Plain fab</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_03"></div>
+								<div class="demo-button-caption demo-text">Plain FAB</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_04"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_05"></div>
+								<div class="demo-button-caption demo-text">Disabled</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/PlainFabDemo.java" %}</pre>
+
+						<h5 class="demo-title">Raised</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_06"></div>
+								<div class="demo-button-caption demo-text">Raised Button</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_07"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_08"></div>
+								<div class="demo-button-caption demo-text">Disabled</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/RaisedButtonDemo.java" %}</pre>
+
+						<h5 class="demo-title">Raised Colored</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_09"></div>
+								<div class="demo-button-caption demo-text">Colored button</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_10"></div>
+								<div class="demo-button-caption demo-text">Accent colored</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_11"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/RaisedColoredDemo.java" %}</pre>
+
+						<h5 class="demo-title">Flat</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_12"></div>
+								<div class="demo-button-caption demo-text">Flat button</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_13"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_14"></div>
+								<div class="demo-button-caption demo-text">Disabled</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/FlatButtonDemo.java" %}</pre>
+
+						<h5 class="demo-title">Flat colored</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_15"></div>
+								<div class="demo-button-caption demo-text">Primary colored flat
+								</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_16"></div>
+								<div class="demo-button-caption demo-text">Accent colored</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_17"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/FlatColoredDemo.java" %}</pre>
+
+						<h5 class="demo-title">Icon</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_18"></div>
+								<div class="demo-button-caption demo-text">Icon button</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_19"></div>
+								<div class="demo-button-caption demo-text">Colored</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_20"></div>
+								<div class="demo-button-caption demo-text">Accent</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_21"></div>
+								<div class="demo-button-caption demo-text">With ripple</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/IconButtonDemo.java" %}</pre>
+
+						<h5 class="demo-title">Mini fab</h5>
+
+						<div align="center">
+							<div class="demo-button-container">
+								<div id="ctnr_22"></div>
+								<div class="demo-button-caption demo-text">Mini FAB</div>
+							</div>
+							<div class="demo-button-container">
+								<div id="ctnr_23"></div>
+								<div class="demo-button-caption demo-text">Colored</div>
+							</div>
+						</div>
+
+						<pre class="demo-code prettyprint lang-java">{% include "../../../java/com/github/ilyes4j/gwt/mdl/demo/modules/buttons/MiniFabDemo.java" %}</pre>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

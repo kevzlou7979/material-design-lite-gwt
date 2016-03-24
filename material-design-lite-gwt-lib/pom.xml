@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.github.ilyes4j</groupId>
+    <artifactId>material-design-lite-gwt</artifactId>
+    <version>0.1.0</version>
+  </parent>
+
+  <artifactId>material-design-lite-gwt-lib</artifactId>
+
+  <packaging>jar</packaging>
+
+  <name>Material Design Lite for Gwt Lib</name>
+
+  <description>An MDL look and feel GWT library</description>
+
+  <url>http://ilyes4j.github.io/material-design-lite-gwt</url>
+
+  <dependencies>
+    <!-- GWT User library -->
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- JUnit for unit testing -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>default-cli</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <phase>test</phase>
+            <configuration>
+              <configLocation>../sun_checks_eclipse.xml</configLocation>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <executions>
+
+          <!-- package sources with compiled classes -->
+          <execution>
+            <id>gwt-resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+
+          <!-- https://gwt-maven-plugin.github.io/gwt-maven-plugin/user-guide/testing.html -->
+
+          <!-- Run gwt Unit Tests using the goal provided by the plugin -->
+          <!-- Do not use surfire to run gwt unit tests -->
+
+          <!-- Plain java unit tests are still run using surfire -->
+          <!-- Gwt test are run by gwt plugin but never never by surfire -->
+          <!-- Non-gwt Test are run by by surfire but never never by gwt 
+            plugin -->
+
+          <!-- To acheive this setup a naming convention is imposed on unit 
+            Tests -->
+
+          <!-- Gwt Tests are named *GwtTest.java to be ignored by surfire -->
+          <!-- Gwt Tests are named *GwtTest.java to be picked by gwt test -->
+
+          <!-- Non-gwt Tests are named *Test.java to be picked by surfire -->
+          <!-- Non-gwt Tests are named *Test.java to be ignored by gwt test -->
+          <execution>
+            <id>default-cli</id>
+            <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <!-- Only run the gwt test suite -->
+              <includes>**/MdlGwtTestSuite.java</includes>
+
+              <!-- Run Tests using super dev mode -->
+              <productionMode>true</productionMode>
+
+              <!-- Run using a real browser -->
+              <!-- <mode>manual</mode> -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Run non-gwt tests using surfire -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <!-- Do not run gwt tests -->
+            <exclude>**/MdlGwt*Test.java</exclude>
+            <exclude>**/MdlGwtTestSuite.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <!-- generate javadoc for the library module -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>javadoc-jar</id>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>source-jar</id>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
