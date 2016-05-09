@@ -89,6 +89,195 @@ public class CheckboxDemo implements EntryPoint {
   }
 }
 </pre>
+
+						<h5 class="demo-title">Radio</h5>
+
+						<div id="radioContainer"></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
+import com.github.ilyes4j.gwt.mdl.components.toggles.RadioButton;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Radio Button Demo. */
+public class RadioDemo implements EntryPoint {
+
+  /** Add 3 radio buttons. */
+  public final void onModuleLoad() {
+
+    RootPanel root = RootPanel.get("radioContainer");
+
+    root.add(getRadio("radio1"));
+    root.add(getRadio("radio2"));
+    root.add(getRadio("radio3"));
+  }
+
+  /**
+   * @param value
+   *          the value and text to be set for the radio
+   * 
+   * @return a radio button with a text a value and a ripple
+   */
+  public static RadioButton getRadio(final String value) {
+    String group = "group";
+    RadioButton radio = new RadioButton(group);
+    radio.setRipple(Ripple.HAS_RIPPLE);
+    radio.setText(value);
+    return radio;
+  }
+}
+</pre>
+
+						<h5 class="demo-title">Switch</h5>
+
+						<div id="switchContainer"></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
+import com.github.ilyes4j.gwt.mdl.components.toggles.CheckBoxStyle;
+import com.github.ilyes4j.gwt.mdl.components.toggles.Checkbox;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Switch demo. */
+public class SwitchDemo implements EntryPoint {
+
+  /** Setup a toggle with a switch face and a ripple. */
+  public final void onModuleLoad() {
+
+    final Checkbox box = new Checkbox("Switch");
+    box.setRipple(Ripple.HAS_RIPPLE);
+    box.setFace(CheckBoxStyle.SWITCH);
+    RootPanel.get("switchContainer").add(box);
+  }
+}
+</pre>
+
+						<h5 class="demo-title">Icon</h5>
+
+						<div id="iconContainer"></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
+import com.github.ilyes4j.gwt.mdl.components.toggles.CheckBoxStyle;
+import com.github.ilyes4j.gwt.mdl.components.toggles.Checkbox;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Icon demo. */
+public class IconDemo implements EntryPoint {
+
+  /** Add an icon demo with a ripple. */
+  public final void onModuleLoad() {
+
+    final Checkbox box = new Checkbox("add");
+    box.setRipple(Ripple.HAS_RIPPLE);
+    box.setFace(CheckBoxStyle.ICON);
+    RootPanel.get("iconContainer").add(box);
+  }
+}
+</pre>
+
+						<h5 class="demo-title">Check Event</h5>
+
+						<div id="checkboxEventContainer"></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
+import com.github.ilyes4j.gwt.mdl.components.toggles.Checkbox;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Check box change event demo. */
+public class CheckboxEventDemo implements EntryPoint {
+
+  /** Change the label on check box toggle. */
+  public final void onModuleLoad() {
+
+    // setup a check box and set its label
+    final Checkbox box = new Checkbox("Enabled");
+    // make it checked
+    box.setValue(true);
+    // set a ripple on it
+    box.setRipple(Ripple.HAS_RIPPLE);
+
+    // add a change listener
+    box.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
+
+      @Override
+      public void onValueChange(final ValueChangeEvent<Boolean> event) {
+        // on check toggle change the label
+        box.setText(event.getValue() ? "Enabled" : "Disabled");
+      }
+    });
+
+    // add the check box to the page
+    RootPanel.get("checkboxEventContainer").add(box);
+  }
+}
+</pre>
+
+						<h5 class="demo-title">Radio Event</h5>
+
+						<div id="radioEventContainer"></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import com.github.ilyes4j.gwt.mdl.components.toggles.RadioButton;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Radio change event demo. */
+public class RadioEventDemo implements EntryPoint, ValueChangeHandler<Boolean> {
+
+  /** Change the label on radio click. */
+  public final void onModuleLoad() {
+
+    RootPanel root = RootPanel.get("radioEventContainer");
+
+    root.add(getWiredRadio("radio1"));
+    root.add(getWiredRadio("radio2"));
+  }
+
+  @Override
+  public void onValueChange(final ValueChangeEvent<Boolean> event) {
+    // retrieve the radio button from the event
+    RadioButton src = (RadioButton) event.getSource();
+    // change the label of the radio to visually reflect the event propagation
+    src.setText("change_" + counter++);
+  }
+
+  /**
+   * @param value
+   *          the value and text to be set for the radio
+   * 
+   * @return a radio button with a text, a value, a ripple and a change
+   *         listener.
+   * 
+   * @see RadioDemo#getRadio(String)
+   */
+  private RadioButton getWiredRadio(final String value) {
+    RadioButton radio = RadioDemo.getRadio(value);
+    radio.addValueChangeHandler(this);
+    return radio;
+  }
+
+  /**
+   * Track the count of events fired and use it to change the label of the
+   * radios.
+   */
+  private static int counter = 0;
+}
+</pre>
 					</div>
 				</div>
 			</div>
