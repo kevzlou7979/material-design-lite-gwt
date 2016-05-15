@@ -98,6 +98,7 @@ public class CheckboxDemo implements EntryPoint {
 
 import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
 import com.github.ilyes4j.gwt.mdl.components.toggles.RadioButton;
+import com.github.ilyes4j.gwt.mdl.demo.Demo;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 
@@ -125,6 +126,7 @@ public class RadioDemo implements EntryPoint {
     RadioButton radio = new RadioButton(group);
     radio.setRipple(Ripple.HAS_RIPPLE);
     radio.setText(value);
+    radio.addStyleName(Demo.DEMO.css().margin());
     return radio;
   }
 }
@@ -278,6 +280,113 @@ public class RadioEventDemo implements EntryPoint, ValueChangeHandler<Boolean> {
   private static int counter = 0;
 }
 </pre>
+						
+						<h5 class="demo-title">Programmatic enabled state</h5>
+
+						<div id=programmaticEnableContainer></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
+import com.github.ilyes4j.gwt.mdl.components.toggles.CheckBoxStyle;
+import com.github.ilyes4j.gwt.mdl.components.toggles.Checkbox;
+import com.github.ilyes4j.gwt.mdl.demo.Demo;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Setting the enabled state. */
+public class ProgrammaticEnableDemo implements EntryPoint {
+
+  /** Set the enabled state of the switch when the toggle is clicked. */
+  public final void onModuleLoad() {
+
+    RootPanel root = RootPanel.get("programmaticEnableContainer");
+    // enable both toggle to sit on the same line
+    String width = "auto";
+    // the initial state of the switch
+    boolean state = true;
+
+    // setup a toggle to control the enabled state
+    Checkbox enable = new Checkbox("Enable/Disable");
+    enable.setValue(state);
+    enable.setRipple(Ripple.HAS_RIPPLE);
+    enable.setFace(CheckBoxStyle.CHECKBOX);
+    enable.setWidth(width);
+    root.add(enable);
+
+    final Checkbox box = new Checkbox("");
+    box.addStyleName(Demo.DEMO.css().inline());
+    box.setValue(state);
+    box.setRipple(Ripple.HAS_RIPPLE);
+    box.setFace(CheckBoxStyle.SWITCH);
+    box.setWidth(width);
+    root.add(box);
+
+    // toggle the enabled state of the switch when the check box is clicked
+    enable.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
+      @Override
+      public void onValueChange(final ValueChangeEvent<Boolean> event) {
+        box.setEnabled(event.getValue());
+      }
+    });
+  }
+}
+</pre>
+						
+						<h5 class="demo-title">Programmatic checked state</h5>
+
+						<div id=programmaticCheckContainer></div>
+
+						<pre class="demo-code prettyprint lang-java">package com.github.ilyes4j.gwt.mdl.demo.modules.toggles;
+
+import static com.github.ilyes4j.gwt.mdl.components.buttons.ButtonColor.BTN_NO_COLOR;
+import static com.github.ilyes4j.gwt.mdl.components.ripples.Ripple.HAS_RIPPLE;
+
+import com.github.ilyes4j.gwt.mdl.components.buttons.Button;
+import com.github.ilyes4j.gwt.mdl.components.ripples.Ripple;
+import com.github.ilyes4j.gwt.mdl.components.toggles.CheckBoxStyle;
+import com.github.ilyes4j.gwt.mdl.components.toggles.Checkbox;
+import com.github.ilyes4j.gwt.mdl.demo.Demo;
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.RootPanel;
+
+/** Setting the checked state. */
+public class ProgrammaticCheckDemo implements EntryPoint {
+
+  /** Set the checked state of the switch when the toggle is clicked. */
+  public final void onModuleLoad() {
+
+    RootPanel root = RootPanel.get("programmaticCheckContainer");
+
+    //setup the button controlling the switch of the checked state for a toggle
+    String text = "Toggle checked";
+    Button enable = Button.createRaised(BTN_NO_COLOR, HAS_RIPPLE, text);
+    enable.setRipple(Ripple.HAS_RIPPLE);
+    root.add(enable);
+
+    //setup the target toggle to be controlled
+    final Checkbox box = new Checkbox("");
+    box.addStyleName(Demo.DEMO.css().inline());
+    box.setValue(true);
+    box.setRipple(Ripple.HAS_RIPPLE);
+    box.setFace(CheckBoxStyle.SWITCH);
+    box.setWidth("auto");
+    root.add(box);
+
+    //flip the checked state when the button is clicked
+    enable.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(final ClickEvent event) {
+        box.setValue(!box.getValue());
+      }
+    });
+  }
+}
+</pre>																		
 					</div>
 				</div>
 			</div>

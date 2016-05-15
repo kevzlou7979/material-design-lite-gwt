@@ -406,6 +406,7 @@ public class CheckboxBase<T extends Enum<T>> extends ButtonBase implements
     } else {
       addStyleDependentName("disabled");
     }
+    toggle.setEnabled(enabled);
   }
 
   @Override
@@ -502,9 +503,12 @@ public class CheckboxBase<T extends Enum<T>> extends ButtonBase implements
 
     Boolean newValue = value == null ? Boolean.FALSE : value;
 
+    toggle.setValue(newValue);
+    
     Boolean oldValue = getValue();
     inputElem.setChecked(newValue);
     inputElem.setDefaultChecked(newValue);
+
     if (newValue.equals(oldValue)) {
       return;
     }
@@ -517,18 +521,6 @@ public class CheckboxBase<T extends Enum<T>> extends ButtonBase implements
   public void setWordWrap(final boolean wrap) {
     getElement().getStyle()
         .setWhiteSpace(wrap ? WhiteSpace.NORMAL : WhiteSpace.NOWRAP);
-  }
-
-  // Unlike other widgets the CheckBox sinks on its inputElement, not
-  // its wrapper
-  @Override
-  public void sinkEvents(final int eventBitsToAdd) {
-    if (isOrWasAttached()) {
-      Event.sinkEvents(inputElem,
-          eventBitsToAdd | Event.getEventsSunk(inputElem));
-    } else {
-      super.sinkEvents(eventBitsToAdd);
-    }
   }
 
   /**
